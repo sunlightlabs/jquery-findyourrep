@@ -1,0 +1,14 @@
+{
+  "name": "jquery.findyourrep",
+  "version": "0.0.1",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "**/*.md"
+  ],
+  "dependencies": {
+    "jquery": "1.11.0",
+    "geocoder-js": "git://github.com/geocoder-php/geocoder-js.git#0.0.1"
+  },
+  "devDependencies": {}
+}

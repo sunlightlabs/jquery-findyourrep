@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../dist/jquery.findyourrep-pack.min.js"></script>
+</head>
+<body>
+    <script>
+        $('body').append('<div class="fyr"></div>')
+                 .find('div.fyr')
+                 .findYourRep({apikey: 'YOUR KEY HERE'});
+    </script>
+</body>
+</html>
