@@ -176,7 +176,7 @@
   // The template that is rendered to display each individual result from any api.
   $.findYourRep.resultTemplate = "" +
   "<li class='fyr-rep'>" +
-    "<a href='{{ resultUrl }}'>" +
+    "<a href='{{ resultUrl }}' target='_top'>" +
     "<img src='{{ photoUrl }}' alt='photo of'>" +
     "<h4>{{ name }}</h4>" +
     "<p class='fyr-details'>{{ details }}</p>" +
