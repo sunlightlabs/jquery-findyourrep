@@ -99,8 +99,14 @@ $linkhover: #5aa;
     list-style: none outside;
 
     li {
-      clear: both;
       @include flowitem;
+      clear: both;
+      padding: 5px;
+      margin-bottom: 0;
+
+      &:hover {
+        background: #f8f8f8;
+      }
 
       a {
         color: inherit;

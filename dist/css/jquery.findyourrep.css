@@ -6,9 +6,7 @@
 .fyr-container .cf:before,
 .fyr-container .cf:after {
   content: " ";
-  /* 1 */
   display: table;
-  /* 2 */
 }
 .fyr-container .cf:after {
   clear: both;
@@ -18,18 +16,18 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
 }
 .fyr-container textarea {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
   border-radius: 3px;
   border: 1px solid #999999;
-  padding: 0.375em 0.625em;
+  padding: .375em .625em;
   font: inherit;
   color: #555555;
 }
@@ -37,15 +35,15 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
   border-radius: 3px;
-  padding: 0.25em 1em;
+  padding: .25em 1em;
   font: normal 18px/1 georgia;
   background: #c45e0a;
   border: 3px solid rgba(222, 221, 215, 0.2);
   text-align: center;
-  color: white;
+  color: #fff;
 }
 .fyr-container button:hover {
   background: #a04d08;
@@ -55,7 +53,7 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
 }
 .fyr-container h4 {
@@ -63,14 +61,14 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
 }
 .fyr-container p {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
   font-style: italic;
   color: #555555;
@@ -87,7 +85,7 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
   font: 300 10px/1.4 verdana, sans-serif;
   color: #999999;
@@ -97,17 +95,22 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
   list-style: none outside;
 }
 .fyr-container .fyr-reps li {
-  clear: both;
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
+  clear: both;
+  padding: 5px;
+  margin-bottom: 0;
+}
+.fyr-container .fyr-reps li:hover {
+  background: #f8f8f8;
 }
 .fyr-container .fyr-reps li a {
   color: inherit;
