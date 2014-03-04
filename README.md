@@ -5,6 +5,18 @@ input and displaying results from Sunlight's Congress and Open States APIs.
 
 ## Usage:
 
+**To add to your page:**
+
+1. Link jQuery and `dist/jquery.indyourrep-pack.min.js` on your page (in that order).
+2. Call $.fn.findYourRep() on an element:
+    ```javascript
+    $('.myDiv').findYourRep({
+        apikey: 'your-key'
+    });
+    ```
+
+**To build & contribute:**
+
 1. Clone this repo
 2. Install Node.js if you don't have it
 3. Run `npm install && bower install && grunt demo`
