@@ -9,11 +9,12 @@ input and displaying results from Sunlight's Congress and Open States APIs.
 
 1. Link jQuery and `dist/jquery.indyourrep-pack.min.js` on your page (in that order).
 2. Call $.fn.findYourRep() on an element:
-    ```javascript
+
+```javascript
     $('.myDiv').findYourRep({
         apikey: 'your-key'
     });
-    ```
+```
 
 **To build & contribute:**
 
