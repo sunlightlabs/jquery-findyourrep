@@ -10,7 +10,7 @@ $linkhover: #5aa;
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 0.5em;
+  margin: 0 0 .5em;
   padding: 0;
 }
 
@@ -26,24 +26,24 @@ $linkhover: #5aa;
 
   .cf:before,
   .cf:after {
-      content: " "; /* 1 */
-      display: table; /* 2 */
+    content: " ";
+    display: table;
   }
 
   .cf:after {
-      clear: both;
+    clear: both;
   }
 
   div[class^='fyr-'] {
-     clear: both;
-     @include flowitem;
+    clear: both;
+    @include flowitem;
   }
 
   textarea {
     @include flowitem;
     @include rounded;
     border: 1px solid $lightest;
-    padding: 0.375em 0.625em;
+    padding: .375em .625em;
     font: inherit;
     color: $lighter;
   }
@@ -51,12 +51,12 @@ $linkhover: #5aa;
   button {
     @include flowitem;
     @include rounded;
-    padding: 0.25em 1em;
+    padding: .25em 1em;
     font: normal 18px/1 georgia;
     background: $btn;
-    border: 3px solid rgba(222,221,215, 0.2);
+    border: 3px solid rgba(222, 221, 215, .2);
     text-align: center;
-    color: white;
+    color: #fff;
     &:hover {
       background: $btnhover;
     }
