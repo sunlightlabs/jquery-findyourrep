@@ -36,10 +36,6 @@ Passed as a javascript object to the constructor, just like any jQ plugin.
           Default is 'Enter your address to see who represents you.'
 - `action`: The text of the button that finds your reps. Default is 'Go!'
 
-## TODO:
-
-- Add some CSS
-
 ## License:
 
 BSD3
