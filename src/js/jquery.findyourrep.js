@@ -23,7 +23,10 @@
  * });
  * ```
  */
-;(function($, window, undefined){
+;(function(window){
+
+window.FYR || (window.FYR = {});
+window.FYR.bootstrap = function($, window, undefined){
   $.findYourRep = {};
   $.findYourRep._version = '0.0.1';
   $.findYourRep.sunlightApiKey = null;
@@ -161,11 +164,11 @@
   $.findYourRep.resultsTemplate = "" +
   "<div class='fyr-results'>" +
     "<h3>Your Representatives</h3>" +
-    "<div class='fyr-congress' style='display:none;'>" +
+    "<div class='fyr-congress cf' style='display:none;'>" +
       "<h4>In Congress</h4>" +
       "<ul class='fyr-reps'></ul>" +
     "</div>" +
-    "<div class='fyr-openstates' style='display:none;'>" +
+    "<div class='fyr-openstates cf' style='display:none;'>" +
       "<h4>State Representatives</h4>" +
       "<ul class='fyr-reps'></ul>" +
     "</div>" +
@@ -175,7 +178,7 @@
 
   // The template that is rendered to display each individual result from any api.
   $.findYourRep.resultTemplate = "" +
-  "<li class='fyr-rep'>" +
+  "<li class='fyr-rep cf'>" +
     "<a href='{{ resultUrl }}' target='_top'>" +
     "<img src='{{ photoUrl }}' alt='photo of'>" +
     "<h4>{{ name }}</h4>" +
@@ -224,9 +227,9 @@
               // the results container
               $.each(iterable, function(k, rep){
                 $(el).find('.fyr-' + api).eq(0)
-                     .show()
-                     .append(render($.findYourRep.resultTemplate,
-                                    $.findYourRep.getTemplateContext(rep, api)));
+                     .show().find('.fyr-reps').eq(0)
+                            .append(render($.findYourRep.resultTemplate,
+                                           $.findYourRep.getTemplateContext(rep, api)));
               });
             });
           });
@@ -236,4 +239,40 @@
       $(el).html(render($.findYourRep.formTemplate, ctx));
     });
   };
-})(jQuery, this);
+};
+
+// new jq has arrived! shift jq off to FYR.$ and re-initialize all the elements we wanted to before...
+window.FYR.onNewJq = function(){
+  var $;
+  window.console && console.log && console.log('Saving new jQuery at FYR.$');
+  window.FYR.$ = jQuery.noConflict(true);
+  $ = window.FYR.$;
+  window.FYR.bootstrap(window.FYR.$, window);
+  if (typeof FYR.$els != 'undefined') {
+    $.each(FYR.$els, function(i, set) {
+      $(set.els).findYourRep(set.opts);
+    });
+  }
+};
+
+// patch jquery if it is too old (<1.7), or missing
+if (typeof jQuery == 'undefined' || parseFloat(jQuery.fn.jquery) < 1.7) {
+  window.console && console.log && console.log('Downloading jQuery because it was old or missing...');
+  var scr = document.createElement('script');
+  scr.src = '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js';
+  scr.onload = FYR.onNewJq;
+  document.getElementsByTagName('head')[0].appendChild(scr);
+
+  jQuery.fn.findYourRep = function(opts) {
+    window.FYR.$els || (window.FYR.$els = []);
+    window.FYR.$els.push({
+      els: this,
+      opts: opts
+    });
+    return jQuery(this);
+  };
+} else {
+  FYR.bootstrap(jQuery, window);
+}
+
+})(this);

@@ -8,12 +8,30 @@ module.exports = function(grunt) {
       dist: {
         files: {
           // just minified
-          'dist/<%= pkg.name %>.min.js': [ 'src/<%= pkg.name %>.js' ],
+          'dist/js/<%= pkg.name %>.min.js': [ 'src/js/<%= pkg.name %>.js' ],
           // minified w/ geocoder
-          'dist/<%= pkg.name %>-pack.min.js': [
+          'dist/js/<%= pkg.name %>-pack.min.js': [
             'bower_components/geocoder-js/dist/geocoder.js',
-            'src/<%= pkg.name %>.js'
+            'src/js/<%= pkg.name %>.js'
           ]
+        }
+      }
+    },
+    sass: {
+      dist: {
+        options: {
+          style: 'compressed'
+        },
+        files: {
+          'dist/css/jquery.findyourrep.min.css': 'src/css/jquery.findyourrep.css.scss'
+        }
+      },
+      editable: {
+        options: {
+          style: 'expanded'
+        },
+        files: {
+          'dist/css/jquery.findyourrep.css': 'src/css/jquery.findyourrep.css.scss'
         }
       }
     },
@@ -24,11 +42,24 @@ module.exports = function(grunt) {
           keepalive: true
         }
       }
+    },
+    watch: {
+      css: {
+        files: 'src/css/*.scss',
+        tasks: ['sass']
+      },
+      scripts: {
+        files: 'src/js/*.js',
+        tasks: ['uglify']
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.registerTask('default', ['uglify']);
-  grunt.registerTask('demo', ['uglify', 'connect']);
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.registerTask('default', ['uglify', 'sass']);
+  grunt.registerTask('watch', ['watch']);
+  grunt.registerTask('demo', ['uglify', 'sass', 'connect']);
 };
