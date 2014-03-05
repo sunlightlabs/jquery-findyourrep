@@ -5,8 +5,6 @@ input and displaying results from Sunlight's Congress and Open States APIs.
 
 ## Usage:
 
-**To add to your page:**
-
 1. Link jQuery and `dist/jquery.findyourrep-pack.min.js` on your page (in that order).
 2. Call `findYourRep()` on an element:
 
@@ -15,12 +13,6 @@ input and displaying results from Sunlight's Congress and Open States APIs.
         apikey: 'your-key'
     });
 ```
-
-**To build & contribute:**
-
-1. Clone this repo
-2. Install Node.js if you don't have it
-3. Run `npm install && bower install && grunt demo`
 
 ## Options:
 
@@ -48,6 +40,13 @@ available in the `src/css` folder which you can edit to add your own style.
 ![Enter your address screen](example/screen1.png)
 
 ![Result Screen](example/screen2.png)
+
+## Contributing:
+
+1. Fork this repo
+2. Install Node.js if you don't have it
+3. Run `npm install && bower install && grunt demo`
+4. Commit your changes and send a pull request
 
 ## License:
 
