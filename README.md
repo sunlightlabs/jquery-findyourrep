@@ -36,6 +36,19 @@ Passed as a javascript object to the constructor, just like any jQ plugin.
           Default is 'Enter your address to see who represents you.'
 - `action`: The text of the button that finds your reps. Default is 'Go!'
 
+## Default Styles:
+
+There's an included stylesheet which you can add to your page to add some basic style.
+
+By default, all CSS is scoped to a container classname, `.fyr-container`. There's a scss source file
+available in the `src/css` folder which you can edit to add your own style.
+
+**Screenshots:**
+
+![Enter your address screen](example/screen1.png)
+
+![Result Screen](example/screen2.png)
+
 ## License:
 
 BSD3
