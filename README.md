@@ -50,4 +50,4 @@ available in the `src/css` folder which you can edit to add your own style.
 
 ## License:
 
-BSD3
+[BSD3](LICENSE)
