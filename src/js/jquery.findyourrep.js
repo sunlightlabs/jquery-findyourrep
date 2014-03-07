@@ -73,7 +73,11 @@ window.FYR.bootstrap = function($, window, undefined){
       gc = new GeocoderJS.createGeocoder(geocoder);
     }
     gc.geocode(address, function(geocoded){
-      dfd.resolve(geocoded[0]);
+      try {
+        dfd.resolve(geocoded[0]);
+      } catch(e) {
+        dfd.resolve({});
+      }
     });
     return dfd;
   };
@@ -218,8 +222,14 @@ window.FYR.bootstrap = function($, window, undefined){
             // call the api with the lat/lng object
             $.findYourRep[api](addrData).done(function(repData){
               // result array either lives in root or in root.results
-              var iterable = repData.results || repData,
+              var iterable = repData.results || repData || [],
                   uppers = ['senate', 'upper'];
+
+              if (iterable.length === 0 || iterable.status == "500") {
+                $(el).find('.fyr-' + api).eq(0).show()
+                     .find('.fyr-reps').append('<li class="fyr-rep">No results found.</li>').show();
+                return false;
+              }
               // sort results to list upper house first
               iterable = iterable.sort(function(a, b){
                 if (a.chamber == b.chamber) { return 0; }
@@ -259,7 +269,10 @@ window.FYR.onNewJq = function(){
 };
 
 // patch jquery if it is too old (<1.7), or missing
-if (typeof jQuery == 'undefined' || parseFloat(jQuery.fn.jquery) < 1.7) {
+var paddedVer = $.map(jQuery.fn.jquery.split('.'), function(num) {
+  return ('0' + num).slice(-2);
+}).slice(0, 2).join('.');
+if (typeof jQuery == 'undefined' || paddedVer < '01.07') {
   window.console && console.log && console.log('Downloading jQuery because it was old or missing...');
   var scr = document.createElement('script');
   scr.src = '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js';
