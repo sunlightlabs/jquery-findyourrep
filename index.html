@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>jQuery Find-Your-Rep by sunlightlabs</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>jQuery Find-Your-Rep</h1>
+        <p>A basic jQuery plugin for finding out who represents you in federal and state legislatures</p>
+
+        <p class="view"><a href="https://github.com/sunlightlabs/jquery-findyourrep">View the Project on GitHub <small>sunlightlabs/jquery-findyourrep</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/sunlightlabs/jquery-findyourrep/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/sunlightlabs/jquery-findyourrep/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/sunlightlabs/jquery-findyourrep">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="find-your-rep-widget" class="anchor" href="#find-your-rep-widget"><span class="octicon octicon-link"></span></a>Find Your Rep Widget</h1>
+
+<p>A Basic jQuery plugin that renders a form into the specified target, geocoding
+input and displaying results from Sunlight's Congress and Open States APIs.</p>
+
+<h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<p></p>
+
+<div></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage:</h2>
+
+<ol>
+<li>Link jQuery and <code>dist/jquery.findyourrep-pack.min.js</code> on your page (in that order).</li>
+<li>Call <code>findYourRep()</code> on an element:</li>
+</ol><div class="highlight highlight-javascript"><pre>    <span class="nx">$</span><span class="p">(</span><span class="s1">'.myDiv'</span><span class="p">).</span><span class="nx">findYourRep</span><span class="p">({</span>
+        <span class="nx">apikey</span><span class="o">:</span> <span class="s1">'your-key'</span>
+    <span class="p">});</span>
+</pre></div>
+
+<h2>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options:</h2>
+
+<p>Passed as a javascript object to the constructor, just like any jQ plugin.</p>
+
+<ul>
+<li>
+<code>apikey</code>: Your Sunlight Labs API key (required)</li>
+<li>
+<code>apis</code>: A comma-delimited list of apis to query.<br>
+      For U.S. Congress only, use <code>apis: 'congress'</code><br>
+      For U.S. and State Legislatures, use <code>apis: 'congress, openstates'</code><br>
+      Default is <code>'congress, openstates'</code>.</li>
+<li>
+<code>title</code>: The title of the widget. Default is 'Find Your Representatives'</li>
+<li>
+<code>text</code>: The text that displays above the textarea for the user's address.<br>
+      Default is 'Enter your address to see who represents you.'</li>
+<li>
+<code>action</code>: The text of the button that finds your reps. Default is 'Go!'</li>
+</ul><h2>
+<a name="default-styles" class="anchor" href="#default-styles"><span class="octicon octicon-link"></span></a>Default Styles:</h2>
+
+<p>There's an included stylesheet which you can add to your page to add some basic style.</p>
+
+<p>By default, all CSS is scoped to a container classname, <code>.fyr-container</code>. There's a scss source file
+available in the <code>src/css</code> folder which you can edit to add your own style.</p>
+
+<p><strong>Screenshots:</strong></p>
+
+<p><img src="https://rawgithub.com/sunlightlabs/jquery-findyourrep/master/example/screen1.png" alt="Enter your address screen"></p>
+
+<p><img src="https://rawgithub.com/sunlightlabs/jquery-findyourrep/master/example/screen2.png" alt="Result Screen"></p>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing:</h2>
+
+<ol>
+<li>Fork this repo</li>
+<li>Install Node.js if you don't have it</li>
+<li>Run <code>npm install &amp;&amp; bower install &amp;&amp; grunt demo</code>
+</li>
+<li>Commit your changes and send a pull request</li>
+</ol><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License:</h2>
+
+<p>BSD3</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/sunlightlabs">sunlightlabs</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
