@@ -128,7 +128,7 @@ window.FYR.bootstrap = function($, window, undefined){
       return {
         name: rep['title'] + ' ' + rep.first_name + ' ' + rep.last_name,
         details: transforms[rep.party] + ', ' + transforms[rep.chamber],
-        photoUrl: 'http://theunitedstates.io/images/congress/225x275/' + rep.bioguide_id + '.jpg',
+        photoUrl: 'https://d26u557eiepppx.cloudfront.net/images/congress/225x275/' + rep.bioguide_id + '.jpg',
         resultUrl: 'http://opencongress.org/people/show/' + rep.govtrack_id
       };
     } else if (api == "openstates") {
@@ -198,11 +198,14 @@ window.FYR.bootstrap = function($, window, undefined){
 
     return $(this).each(function(i, el){
       // bind back button to start over
-      $(el).on('click', '.fyr-back', function(){
+      $(el).on('click', '.fyr-back', function(evt){
+        evt.preventDefault();
         $(el).html(render($.findYourRep.formTemplate, ctx));
       });
       // bind go button to locate reps
-      $(el).on('click', '.fyr-submit', function(){
+      $(el).on('click', '.fyr-submit', function(evt){
+        evt.preventDefault();
+        evt.stopPropagation();
         // get the address from the textarea
         var addr = $(el).find('textarea').eq(0).val();
         // render the empty results template
