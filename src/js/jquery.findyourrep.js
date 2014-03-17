@@ -89,6 +89,11 @@ window.FYR.bootstrap = function($, window, undefined){
         params = {};
     params.apikey = $.findYourRep.sunlightApiKey;
 
+    // only run if we're viewing over http
+    if(window.location.protocol.match(/https/)) {
+      dfd.reject('Aborting Open:States query, because HTTPS is not supported.');
+    };
+
     geocodeOrResolveImmediately(address).done(function(geocoded){
       params.lat = geocoded.latitude;
       params['long'] = geocoded.longitude;
@@ -246,6 +251,8 @@ window.FYR.bootstrap = function($, window, undefined){
               });
             });
           });
+        }).fail(function(msg){
+          window.console && console.log && console.log(msg);
         });
       });
       // render the form to start things off

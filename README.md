@@ -41,6 +41,11 @@ available in the `src/css` folder which you can edit to add your own style.
 
 ![Result Screen](example/screen2.png)
 
+## Caveats
+
+- The Open States API does not support HTTPS, so queries to it will not be made when
+    the embedding page is viewed securely.
+
 ## Contributing:
 
 1. Fork this repo
