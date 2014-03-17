@@ -91,8 +91,8 @@ window.FYR.bootstrap = function($, window, undefined){
 
     // only run if we're viewing over http
     if(window.location.protocol.match(/https/)) {
-      dfd.reject('Aborting Open:States query, because HTTPS is not supported.');
-    };
+      return dfd.reject('Aborting Open:States query, because HTTPS is not supported.');
+    }
 
     geocodeOrResolveImmediately(address).done(function(geocoded){
       params.lat = geocoded.latitude;
