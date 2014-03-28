@@ -46,7 +46,7 @@ window.FYR.bootstrap = function($, window, undefined){
 
   // takes either a string address or latlng object and
   // returns a promise for either.
-  function geocodeOrResolveImmediately(arg) {
+  $.findYourRep.geocodeOrResolveImmediately = function(arg) {
     var gcreq;
     if (typeof arg == 'object') {
       gcreq = $.Deferred().resolve(arg);
@@ -93,7 +93,7 @@ window.FYR.bootstrap = function($, window, undefined){
     if (window.location.protocol.match(/https/)) {
       dfd.reject("Aborting Open States query--it does not support HTTPS :(\n  Ask for it here! https://sunlight.atlassian.net/browse/OS-26");
     } else {
-      geocodeOrResolveImmediately(address).done(function(geocoded){
+      $.findYourRep.geocodeOrResolveImmediately(address).done(function(geocoded){
         params.lat = geocoded.latitude;
         params['long'] = geocoded.longitude;
         apiCall(url, params).done(function(data){
@@ -111,7 +111,7 @@ window.FYR.bootstrap = function($, window, undefined){
         params = {};
     params.apikey = $.findYourRep.sunlightApiKey;
 
-    geocodeOrResolveImmediately(address).done(function(geocoded){
+    $.findYourRep.geocodeOrResolveImmediately(address).done(function(geocoded){
       params.latitude = geocoded.latitude;
       params.longitude = geocoded.longitude;
       apiCall(url, params).done(function(data){
