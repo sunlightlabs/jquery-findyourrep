@@ -28,7 +28,7 @@
 window.FYR || (window.FYR = {});
 window.FYR.bootstrap = function($, window, undefined){
   $.findYourRep = {};
-  $.findYourRep._version = '0.0.1';
+  $.findYourRep._version = '0.0.2';
   $.findYourRep.sunlightApiKey = null;
   $.findYourRep.defaultGeocoder = 'google';
   $.findYourRep.geocoderApiKey = null;
@@ -40,9 +40,9 @@ window.FYR.bootstrap = function($, window, undefined){
   };
 
   // brokers a single api call, as a completely premature optimization.
-  function apiCall(url, params) {
+  $.findYourRep.apiCall = function(url, params) {
     return $.getJSON(url, params);
-  }
+  };
 
   // takes either a string address or latlng object and
   // returns a promise for either.
@@ -54,14 +54,14 @@ window.FYR.bootstrap = function($, window, undefined){
       gcreq = $.findYourRep.geocode(arg);
     }
     return gcreq;
-  }
+  };
 
   // performs super-basic template rendering via regexp replace. No nested object support.
-  function render(template, ctx) {
+  $.findYourRep.render = function(template, ctx) {
     return template.replace(/\{\{ ?([\w\d_]+) ?\}\}/gi, function(tag, match) {
       return ctx[match] || '';
     });
-  }
+  };
 
   // geocodes an address, returning a latlng object.
   $.findYourRep.geocode = function (address, geocoder) {
@@ -96,7 +96,7 @@ window.FYR.bootstrap = function($, window, undefined){
       $.findYourRep.geocodeOrResolveImmediately(address).done(function(geocoded){
         params.lat = geocoded.latitude;
         params['long'] = geocoded.longitude;
-        apiCall(url, params).done(function(data){
+        $.findYourRep.apiCall(url, params).done(function(data){
           dfd.resolve(data);
         });
       });
@@ -114,7 +114,7 @@ window.FYR.bootstrap = function($, window, undefined){
     $.findYourRep.geocodeOrResolveImmediately(address).done(function(geocoded){
       params.latitude = geocoded.latitude;
       params.longitude = geocoded.longitude;
-      apiCall(url, params).done(function(data){
+      $.findYourRep.apiCall(url, params).done(function(data){
         dfd.resolve(data);
       });
     });
@@ -209,7 +209,7 @@ window.FYR.bootstrap = function($, window, undefined){
       // bind back button to start over
       $(el).on('click', '.fyr-back', function(evt){
         evt.preventDefault();
-        $(el).html(render($.findYourRep.formTemplate, ctx));
+        $(el).html($.findYourRep.render($.findYourRep.formTemplate, ctx));
       });
       // bind go button to locate reps
       $(el).on('click', '.fyr-submit', function(evt){
@@ -219,7 +219,7 @@ window.FYR.bootstrap = function($, window, undefined){
         var addr = $(el).find('textarea').eq(0).val();
         // render the empty results template
         $(el).find('.fyr-container').eq(0)
-             .html(render($.findYourRep.resultsTemplate, {}));
+             .html($.findYourRep.render($.findYourRep.resultsTemplate, {}));
         // geocode and kick off api calls
         $.findYourRep.geocode(addr).done(function(addrData){
           // with each active api...
@@ -246,8 +246,8 @@ window.FYR.bootstrap = function($, window, undefined){
               $.each(iterable, function(k, rep){
                 $(el).find('.fyr-' + api).eq(0)
                      .show().find('.fyr-reps').eq(0)
-                            .append(render($.findYourRep.resultTemplate,
-                                           $.findYourRep.getTemplateContext(rep, api)));
+                            .append($.findYourRep.render($.findYourRep.resultTemplate,
+                                                         $.findYourRep.getTemplateContext(rep, api)));
               });
             }).fail(function(msg){
               window.console && console.log && console.log(msg);
@@ -256,7 +256,7 @@ window.FYR.bootstrap = function($, window, undefined){
         });
       });
       // render the form to start things off
-      $(el).html(render($.findYourRep.formTemplate, ctx));
+      $(el).html($.findYourRep.render($.findYourRep.formTemplate, ctx));
     });
   };
 };
