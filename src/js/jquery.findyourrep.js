@@ -238,7 +238,7 @@ window.FYR.bootstrap = function($, window, undefined){
               // sort results to list upper house first
               iterable = iterable.sort(function(a, b){
                 if (a.chamber == b.chamber) { return 0; }
-                else if (uppers.indexOf(a.chamber) != '-1') { return -1; }
+                else if ($.inArray(a.chamber, uppers) != '-1') { return -1; }
                 else { return 1; }
               });
               // iterate over api's results and render a single result template into
