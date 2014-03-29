@@ -28,9 +28,12 @@
 window.FYR || (window.FYR = {});
 window.FYR.bootstrap = function($, window, undefined){
   $.findYourRep = {};
-  $.findYourRep._version = '0.0.2';
+  $.findYourRep._version = '0.0.3';
   $.findYourRep.sunlightApiKey = null;
   $.findYourRep.defaultGeocoder = 'google';
+  $.findYourRep.geocodeWithSSL = !(location.protocol === 'http:' &&
+                                  window.XDomainRequest &&
+                                  !('withCredentials' in new XMLHttpRequest()));
   $.findYourRep.geocoderApiKey = null;
   $.findYourRep.templateContext = {
     title: 'Find Your Representatives',
@@ -66,12 +69,16 @@ window.FYR.bootstrap = function($, window, undefined){
   // geocodes an address, returning a latlng object.
   $.findYourRep.geocode = function (address, geocoder) {
     var gc,
-        dfd = new $.Deferred();
-    if (geocoder === undefined) {
-      gc = $.findYourRep._gc || ($.findYourRep._gc = new GeocoderJS.createGeocoder($.findYourRep.defaultGeocoder));
-    } else {
-      gc = new GeocoderJS.createGeocoder(geocoder);
+        dfd = new $.Deferred(),
+        params = {
+          provider: geocoder || $.findYourRep.defaultGeocoder,
+          useSSL: $.findYourRep.geocodeWithSSl,
+        };
+
+    if ($.findYourRep.geocoderApiKey) {
+      params.apiKey = $.findYourRep.geocoderApiKey;
     }
+    gc = new GeocoderJS.createGeocoder(params);
     gc.geocode(address, function(geocoded){
       try {
         dfd.resolve(geocoded[0]);
